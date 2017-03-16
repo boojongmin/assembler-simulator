@@ -95,11 +95,17 @@
                             </tbody>
                         </table>
                         <p class="text-muted">RAM</p>
-                        <div style="width:29em;" class="source-code">
-                            <div class="memory-block"
-                                 ng-repeat="m in memory.data track by $index"
-                                 ng-class="getMemoryCellCss($index)">
+                        <div style="width:32em;" class="source-code">
+                          <div class="memory-block" style="background-color:skyblue;width:1.8em;"> </div><div class="memory-block" style="background-color:skyblue;"
+                               ng-repeat="m in [ 0,1,2,3, 4, 5,6,7,8,9,10, 11, 12, 13, 14, 15]">
+                               {{ m.toString(16) }}
+                           </div>
+                           <div class="memory-block"
+                                 ng-class="getMemoryCellCss($index)"
+                                 ng-style="($index % 16) === 0 && {width:'3.6em'}"
+                                 ng-repeat="m in memory.data track by $index">
                                  <div ng-class="getMemoryInnerCellCss($index)" ng-switch="isInstruction($index)">
+                                     <small ng-if="$index % 16 == 0" style="background-color:skyblue;">{{$index / 16}}</small>
                                      <small ng-switch-default>{{ m | number:displayHex }}</small>
                                      <a ng-switch-when="true" ng-click="jumpToLine($index)">
                                          <small>{{ m | number:displayHex }}</small>
@@ -118,7 +124,7 @@
                                 <a ng-click="displayHex = true" ng-hide="displayHex">Hex</a>
                                 <a ng-click="displayHex = false" ng-show="displayHex">Decimal</a>
 								<br>
-								Register addressing: 
+								Register addressing:
                                 <span style="margin-left:5px;">A:</span>
                                 <a ng-click="displayA = true" ng-hide="displayA">Show</a>
                                 <a ng-click="displayA = false" ng-show="displayA">Hide</a>
