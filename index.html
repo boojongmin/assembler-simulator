@@ -105,7 +105,7 @@
                                  ng-style="($index % 16) === 0 && {width:'3.6em'}"
                                  ng-repeat="m in memory.data track by $index">
                                  <div ng-class="getMemoryInnerCellCss($index)" ng-switch="isInstruction($index)" ng-style="{'width: {$index % 16 == 0 ? '3em': '1.8em'}'}">
-                                     <small ng-if="$index % 16 == 0" style="background-color:skyblue;">{{$index / 16}}</small>
+                                     <small ng-if="$index % 16 == 0" style="background-color:skyblue;">{{($index / 16).toString(16)}}</small>
                                      <small ng-switch-default>{{ m | number:displayHex }}</small>
                                      <a ng-switch-when="true" ng-click="jumpToLine($index)">
                                          <small>{{ m | number:displayHex }}</small>
